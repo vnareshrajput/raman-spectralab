@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SpectraLab</title>
+<style>
+body {
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background:#F0FAFF;
+}
+
+.topbar {
+    background:#03045E;
+    color:white;
+    padding:12px 20px;
+    font-size:18px;
+    font-weight:600;
+}
+
+.container {
+    display:flex;
+}
+
+/* LEFT PANEL */
+.sidebar {
+    width:260px;
+    background:linear-gradient(#023E8A,#0077B6);
+    color:white;
+    padding:15px;
+}
+
+.step {
+    background:rgba(255,255,255,0.1);
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:10px;
+}
+
+/* RIGHT PANEL */
+.main {
+    flex:1;
+    padding:20px;
+}
+
+.card {
+    background:white;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+    border:1px solid #CAF0F8;
+}
+
+h3 {
+    margin:0 0 10px 0;
+    color:#0077B6;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">🔬 SpectraLab Dashboard</div>
+
+<div class="container">
+
+    <div class="sidebar">
+        <div class="step">1. Upload File</div>
+        <div class="step">2. ROI Selection</div>
+        <div class="step">3. Smoothing</div>
+        <div class="step">4. Baseline</div>
+        <div class="step">5. Normalization</div>
+        <div class="step">6. Mean Spectrum</div>
+        <div class="step">7. Export</div>
+    </div>
+
+    <div class="main">
+
+        <div class="card">
+            <h3>Raw Spectra</h3>
+            <p>Displayed in Streamlit backend</p>
+        </div>
+
+        <div class="card">
+            <h3>Processed Graphs</h3>
+            <p>ROI, smoothing, baseline, normalization</p>
+        </div>
+
+        <div class="card">
+            <h3>Download</h3>
+            <p>Export processed CSV</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
