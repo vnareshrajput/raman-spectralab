@@ -4,31 +4,31 @@ from scipy.signal import savgol_filter
 from scipy import sparse
 from scipy.sparse.linalg import spsolve
 from sklearn.preprocessing import MinMaxScaler
+
 def load_file(file):
+
     if file.name.endswith(".txt"):
 
-        # Read lines
         lines = file.readlines()
         lines = [line.decode("utf-8") for line in lines]
 
-        # Find start
         start_index = 0
         for i, line in enumerate(lines):
             if "Begin Spectral Data" in line:
                 start_index = i + 1
                 break
 
-        # 🔥 IMPORTANT FIX
         file.seek(0)
 
         df = pd.read_csv(file, sep=r"\s+", skiprows=start_index, header=None)
 
-        # Handle variable columns
-        if df.shape[1] == 2:
-            df.columns = ["Raman_Shift", "Intensity"]
-        else:
-            cols = ["Raman_Shift"] + [f"Intensity_{i}" for i in range(1, df.shape[1])]
-            df.columns = cols
+        # 🔥 FIX: detect correct columns
+        if df.shape[1] > 2:
+            # Assume first column is index → drop it
+            df = df.iloc[:, 1:]
+
+        # Rename properly
+        df.columns = ["Raman_Shift"] + [f"Intensity_{i}" for i in range(1, df.shape[1])]
 
     else:
         df = pd.read_csv(file)
